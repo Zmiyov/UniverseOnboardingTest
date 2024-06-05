@@ -31,6 +31,17 @@ final class OnboardingViewController: UIViewController {
     
     private func setupUI() {
         
+        continueButtonState()
+    }
+    
+    private func continueButtonState() {
+        if selectedCellIndex != nil  {
+            mainView.continueButton.backgroundColor = .buttonBlack
+            mainView.continueButton.setTitleColor(.white, for: .normal)
+        } else {
+            mainView.continueButton.backgroundColor = .white
+            mainView.continueButton.setTitleColor(.inactiveGray, for: .normal)
+        }
     }
 }
 
@@ -51,6 +62,7 @@ extension OnboardingViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedCellIndex = indexPath.item
         collectionView.reloadData()
+        continueButtonState()
     }
 }
 

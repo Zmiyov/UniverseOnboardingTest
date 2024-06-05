@@ -14,7 +14,7 @@ final class OnboardingView: BaseOnboardingView {
         var label = UILabel()
         label.textAlignment = .left
         label.textColor = .blackFont
-        label.font = Fonts.onbTitle()
+        label.font = Fonts.onbTitleBold()
         label.text = "Test title"
         return label
     }()
@@ -23,7 +23,7 @@ final class OnboardingView: BaseOnboardingView {
         var label = UILabel()
         label.textAlignment = .left
         label.textColor = .blackFont
-        label.font = Fonts.onbPageTitle()
+        label.font = Fonts.onbTitleSemiBold()
         label.text = "Test page title"
         return label
     }()
@@ -43,7 +43,7 @@ final class OnboardingView: BaseOnboardingView {
         button.backgroundColor = .buttonBlack
         button.setTitle("Continue", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = Fonts.onbButtonTitle()
+        button.titleLabel?.font = Fonts.onbTitleSemiBold(17)
         return button
     }()
     

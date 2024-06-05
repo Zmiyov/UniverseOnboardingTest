@@ -17,12 +17,12 @@ extension UIView {
         
         layer.masksToBounds = false
         layer.shadowColor = UIColor.shadowGray.cgColor
-        layer.shadowOpacity = 0.15
-        layer.shadowRadius = 3
+        layer.shadowOpacity = 0.25
+        layer.shadowRadius = 15
 
         switch destination {
         case .button:
-            layer.shadowOffset = CGSize(width: 3 , height: 3)
+            layer.shadowOffset = CGSize(width: 0 , height: 3)
         case .cell:
             layer.shadowOffset = CGSize(width: 0 , height: 1)
         }

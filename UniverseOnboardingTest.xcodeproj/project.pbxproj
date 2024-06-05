@@ -22,7 +22,10 @@
 		A5FE36182C1057B000952B95 /* OnboardingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FE36172C1057B000952B95 /* OnboardingModel.swift */; };
 		A5FE361B2C1059CB00952B95 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FE361A2C1059CB00952B95 /* Fonts.swift */; };
 		A5FE361E2C1063B600952B95 /* CollectionView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FE361D2C1063B600952B95 /* CollectionView+.swift */; };
-		A5FE36202C106DD500952B95 /* UIView+shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FE361F2C106DD500952B95 /* UIView+shadow.swift */; };
+		A5FE36202C106DD500952B95 /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FE361F2C106DD500952B95 /* UIView+Shadow.swift */; };
+		A5FE36222C10791E00952B95 /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FE36212C10791E00952B95 /* PaywallView.swift */; };
+		A5FE36242C107C0700952B95 /* TextConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FE36232C107C0700952B95 /* TextConstants.swift */; };
+		A5FE36262C10888800952B95 /* UITextView+Hyperlinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FE36252C10888800952B95 /* UITextView+Hyperlinks.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,7 +45,10 @@
 		A5FE36172C1057B000952B95 /* OnboardingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingModel.swift; sourceTree = "<group>"; };
 		A5FE361A2C1059CB00952B95 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		A5FE361D2C1063B600952B95 /* CollectionView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CollectionView+.swift"; sourceTree = "<group>"; };
-		A5FE361F2C106DD500952B95 /* UIView+shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+shadow.swift"; sourceTree = "<group>"; };
+		A5FE361F2C106DD500952B95 /* UIView+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
+		A5FE36212C10791E00952B95 /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
+		A5FE36232C107C0700952B95 /* TextConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextConstants.swift; sourceTree = "<group>"; };
+		A5FE36252C10888800952B95 /* UITextView+Hyperlinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Hyperlinks.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				A5FE36042C1045C600952B95 /* PaywallViewController.swift */,
+				A5FE36212C10791E00952B95 /* PaywallView.swift */,
 			);
 			path = Paywall;
 			sourceTree = "<group>";
@@ -147,6 +154,7 @@
 			children = (
 				A5FE361C2C1063A500952B95 /* Extensions */,
 				A5FE361A2C1059CB00952B95 /* Fonts.swift */,
+				A5FE36232C107C0700952B95 /* TextConstants.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -155,7 +163,8 @@
 			isa = PBXGroup;
 			children = (
 				A5FE361D2C1063B600952B95 /* CollectionView+.swift */,
-				A5FE361F2C106DD500952B95 /* UIView+shadow.swift */,
+				A5FE361F2C106DD500952B95 /* UIView+Shadow.swift */,
+				A5FE36252C10888800952B95 /* UITextView+Hyperlinks.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -241,13 +250,16 @@
 				A5FE361E2C1063B600952B95 /* CollectionView+.swift in Sources */,
 				A5FE35EF2C10442C00952B95 /* AppDelegate.swift in Sources */,
 				A5FE35F12C10442C00952B95 /* SceneDelegate.swift in Sources */,
+				A5FE36262C10888800952B95 /* UITextView+Hyperlinks.swift in Sources */,
 				A5FE36032C1045B600952B95 /* OnboardingViewController.swift in Sources */,
 				A5FE36132C104A6100952B95 /* OnboardingView.swift in Sources */,
-				A5FE36202C106DD500952B95 /* UIView+shadow.swift in Sources */,
+				A5FE36222C10791E00952B95 /* PaywallView.swift in Sources */,
+				A5FE36202C106DD500952B95 /* UIView+Shadow.swift in Sources */,
 				A5FE36182C1057B000952B95 /* OnboardingModel.swift in Sources */,
 				A5FE36052C1045C600952B95 /* PaywallViewController.swift in Sources */,
 				A5FE361B2C1059CB00952B95 /* Fonts.swift in Sources */,
 				A5FE360E2C1047CB00952B95 /* AppMainView.swift in Sources */,
+				A5FE36242C107C0700952B95 /* TextConstants.swift in Sources */,
 				A5FE36162C10577F00952B95 /* OnboardingCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

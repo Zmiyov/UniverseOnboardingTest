@@ -19,7 +19,7 @@ final class OnboardingCollectionViewCell: UICollectionViewCell {
         var label = UILabel()
         label.textAlignment = .left
         label.textColor = .blackFont
-        label.font = Fonts.onbCellTitle()
+        label.font = Fonts.onbTitleSemiBold(17)
         label.text = "test"
         return label
     }()

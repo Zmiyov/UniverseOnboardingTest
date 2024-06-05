@@ -9,19 +9,19 @@ import UIKit
 
 enum Fonts {
 
-    static func onbTitle() -> UIFont {
-        return UIFont.systemFont(ofSize: 26, weight: .bold)
+    static func onbTitleBold(_ size: CGFloat = 26) -> UIFont {
+        return UIFont.systemFont(ofSize: size, weight: .bold)
     }
     
-    static func onbPageTitle() -> UIFont {
-        return UIFont.systemFont(ofSize: 20, weight: .semibold)
+    static func onbTitleSemiBold(_ size: CGFloat = 20) -> UIFont {
+        return UIFont.systemFont(ofSize: size, weight: .semibold)
     }
     
-    static func onbCellTitle() -> UIFont {
-        return UIFont.systemFont(ofSize: 16, weight: .medium)
+    static func onbTitleMedium(_ size: CGFloat = 16) -> UIFont {
+        return UIFont.systemFont(ofSize: size, weight: .medium)
     }
     
-    static func onbButtonTitle() -> UIFont {
-        return UIFont.systemFont(ofSize: 17, weight: .semibold)
+    static func onbTitleRegular(_ size: CGFloat = 12) -> UIFont {
+        return UIFont.systemFont(ofSize: size, weight: .regular)
     }
 }
