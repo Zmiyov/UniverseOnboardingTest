@@ -14,6 +14,15 @@
 		A5FE35FB2C10442E00952B95 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = A5FE35FA2C10442E00952B95 /* Base */; };
 		A5FE36032C1045B600952B95 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FE36022C1045B600952B95 /* OnboardingViewController.swift */; };
 		A5FE36052C1045C600952B95 /* PaywallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FE36042C1045C600952B95 /* PaywallViewController.swift */; };
+		A5FE360C2C10478D00952B95 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = A5FE360B2C10478D00952B95 /* SnapKit */; };
+		A5FE360E2C1047CB00952B95 /* AppMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FE360D2C1047CB00952B95 /* AppMainView.swift */; };
+		A5FE36112C10488300952B95 /* BaseOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FE36102C10488300952B95 /* BaseOnboardingView.swift */; };
+		A5FE36132C104A6100952B95 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FE36122C104A6100952B95 /* OnboardingView.swift */; };
+		A5FE36162C10577F00952B95 /* OnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FE36152C10577F00952B95 /* OnboardingCollectionViewCell.swift */; };
+		A5FE36182C1057B000952B95 /* OnboardingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FE36172C1057B000952B95 /* OnboardingModel.swift */; };
+		A5FE361B2C1059CB00952B95 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FE361A2C1059CB00952B95 /* Fonts.swift */; };
+		A5FE361E2C1063B600952B95 /* CollectionView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FE361D2C1063B600952B95 /* CollectionView+.swift */; };
+		A5FE36202C106DD500952B95 /* UIView+shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FE361F2C106DD500952B95 /* UIView+shadow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +35,14 @@
 		A5FE35FC2C10442E00952B95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A5FE36022C1045B600952B95 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		A5FE36042C1045C600952B95 /* PaywallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallViewController.swift; sourceTree = "<group>"; };
+		A5FE360D2C1047CB00952B95 /* AppMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMainView.swift; sourceTree = "<group>"; };
+		A5FE36102C10488300952B95 /* BaseOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseOnboardingView.swift; sourceTree = "<group>"; };
+		A5FE36122C104A6100952B95 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		A5FE36152C10577F00952B95 /* OnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCollectionViewCell.swift; sourceTree = "<group>"; };
+		A5FE36172C1057B000952B95 /* OnboardingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingModel.swift; sourceTree = "<group>"; };
+		A5FE361A2C1059CB00952B95 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		A5FE361D2C1063B600952B95 /* CollectionView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CollectionView+.swift"; sourceTree = "<group>"; };
+		A5FE361F2C106DD500952B95 /* UIView+shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+shadow.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5FE360C2C10478D00952B95 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,6 +76,8 @@
 		A5FE35ED2C10442C00952B95 /* UniverseOnboardingTest */ = {
 			isa = PBXGroup;
 			children = (
+				A5FE36192C1059C100952B95 /* Common */,
+				A5FE360F2C10486100952B95 /* Base */,
 				A5FE36072C10464500952B95 /* Onboarding */,
 				A5FE36082C10465800952B95 /* Paywall */,
 				A5FE36092C10466400952B95 /* Main */,
@@ -81,7 +101,10 @@
 		A5FE36072C10464500952B95 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				A5FE36142C104BB200952B95 /* Cell */,
 				A5FE36022C1045B600952B95 /* OnboardingViewController.swift */,
+				A5FE36122C104A6100952B95 /* OnboardingView.swift */,
+				A5FE36172C1057B000952B95 /* OnboardingModel.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -98,8 +121,43 @@
 			isa = PBXGroup;
 			children = (
 				A5FE35F22C10442C00952B95 /* AppViewController.swift */,
+				A5FE360D2C1047CB00952B95 /* AppMainView.swift */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		A5FE360F2C10486100952B95 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				A5FE36102C10488300952B95 /* BaseOnboardingView.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		A5FE36142C104BB200952B95 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				A5FE36152C10577F00952B95 /* OnboardingCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		A5FE36192C1059C100952B95 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				A5FE361C2C1063A500952B95 /* Extensions */,
+				A5FE361A2C1059CB00952B95 /* Fonts.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		A5FE361C2C1063A500952B95 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A5FE361D2C1063B600952B95 /* CollectionView+.swift */,
+				A5FE361F2C106DD500952B95 /* UIView+shadow.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -118,6 +176,9 @@
 			dependencies = (
 			);
 			name = UniverseOnboardingTest;
+			packageProductDependencies = (
+				A5FE360B2C10478D00952B95 /* SnapKit */,
+			);
 			productName = UniverseOnboardingTest;
 			productReference = A5FE35EB2C10442C00952B95 /* UniverseOnboardingTest.app */;
 			productType = "com.apple.product-type.application";
@@ -146,6 +207,9 @@
 				Base,
 			);
 			mainGroup = A5FE35E22C10442C00952B95;
+			packageReferences = (
+				A5FE360A2C10478D00952B95 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = A5FE35EC2C10442C00952B95 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -172,11 +236,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5FE36112C10488300952B95 /* BaseOnboardingView.swift in Sources */,
 				A5FE35F32C10442C00952B95 /* AppViewController.swift in Sources */,
+				A5FE361E2C1063B600952B95 /* CollectionView+.swift in Sources */,
 				A5FE35EF2C10442C00952B95 /* AppDelegate.swift in Sources */,
 				A5FE35F12C10442C00952B95 /* SceneDelegate.swift in Sources */,
 				A5FE36032C1045B600952B95 /* OnboardingViewController.swift in Sources */,
+				A5FE36132C104A6100952B95 /* OnboardingView.swift in Sources */,
+				A5FE36202C106DD500952B95 /* UIView+shadow.swift in Sources */,
+				A5FE36182C1057B000952B95 /* OnboardingModel.swift in Sources */,
 				A5FE36052C1045C600952B95 /* PaywallViewController.swift in Sources */,
+				A5FE361B2C1059CB00952B95 /* Fonts.swift in Sources */,
+				A5FE360E2C1047CB00952B95 /* AppMainView.swift in Sources */,
+				A5FE36162C10577F00952B95 /* OnboardingCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,7 +397,6 @@
 				INFOPLIST_FILE = UniverseOnboardingTest/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -353,7 +424,6 @@
 				INFOPLIST_FILE = UniverseOnboardingTest/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -391,6 +461,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A5FE360A2C10478D00952B95 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A5FE360B2C10478D00952B95 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A5FE360A2C10478D00952B95 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A5FE35E32C10442C00952B95 /* Project object */;
 }
