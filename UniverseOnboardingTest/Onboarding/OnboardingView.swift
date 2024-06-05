@@ -15,7 +15,7 @@ final class OnboardingView: BaseOnboardingView {
         label.textAlignment = .left
         label.textColor = .blackFont
         label.font = Fonts.onbTitleBold()
-        label.text = "Test title"
+        label.text = "Let’s setup App for you"
         return label
     }()
     
@@ -24,7 +24,6 @@ final class OnboardingView: BaseOnboardingView {
         label.textAlignment = .left
         label.textColor = .blackFont
         label.font = Fonts.onbTitleSemiBold()
-        label.text = "Test page title"
         return label
     }()
     

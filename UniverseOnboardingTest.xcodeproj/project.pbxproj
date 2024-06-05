@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D779C178F193A17FD299A54 /* Pods_UniverseOnboardingTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3C456500AC54B6C50FA2FC1 /* Pods_UniverseOnboardingTest.framework */; };
 		A5FE35EF2C10442C00952B95 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FE35EE2C10442C00952B95 /* AppDelegate.swift */; };
 		A5FE35F12C10442C00952B95 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FE35F02C10442C00952B95 /* SceneDelegate.swift */; };
 		A5FE35F32C10442C00952B95 /* AppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FE35F22C10442C00952B95 /* AppViewController.swift */; };
@@ -26,9 +27,13 @@
 		A5FE36222C10791E00952B95 /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FE36212C10791E00952B95 /* PaywallView.swift */; };
 		A5FE36242C107C0700952B95 /* TextConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FE36232C107C0700952B95 /* TextConstants.swift */; };
 		A5FE36262C10888800952B95 /* UITextView+Hyperlinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FE36252C10888800952B95 /* UITextView+Hyperlinks.swift */; };
+		A5FE36292C10E04400952B95 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FE36282C10E04400952B95 /* NetworkService.swift */; };
+		A5FE362B2C1101D500952B95 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5FE362A2C1101D400952B95 /* StoreKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1117CCAA136F38B663BC346B /* Pods-UniverseOnboardingTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniverseOnboardingTest.release.xcconfig"; path = "Target Support Files/Pods-UniverseOnboardingTest/Pods-UniverseOnboardingTest.release.xcconfig"; sourceTree = "<group>"; };
+		55CD9AE69343E624AB1676CF /* Pods-UniverseOnboardingTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniverseOnboardingTest.debug.xcconfig"; path = "Target Support Files/Pods-UniverseOnboardingTest/Pods-UniverseOnboardingTest.debug.xcconfig"; sourceTree = "<group>"; };
 		A5FE35EB2C10442C00952B95 /* UniverseOnboardingTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UniverseOnboardingTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5FE35EE2C10442C00952B95 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5FE35F02C10442C00952B95 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +54,9 @@
 		A5FE36212C10791E00952B95 /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
 		A5FE36232C107C0700952B95 /* TextConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextConstants.swift; sourceTree = "<group>"; };
 		A5FE36252C10888800952B95 /* UITextView+Hyperlinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Hyperlinks.swift"; sourceTree = "<group>"; };
+		A5FE36282C10E04400952B95 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		A5FE362A2C1101D400952B95 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		D3C456500AC54B6C50FA2FC1 /* Pods_UniverseOnboardingTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UniverseOnboardingTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,18 +64,40 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5FE362B2C1101D500952B95 /* StoreKit.framework in Frameworks */,
 				A5FE360C2C10478D00952B95 /* SnapKit in Frameworks */,
+				7D779C178F193A17FD299A54 /* Pods_UniverseOnboardingTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		784ED01ED82BC129FBDFEE03 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				55CD9AE69343E624AB1676CF /* Pods-UniverseOnboardingTest.debug.xcconfig */,
+				1117CCAA136F38B663BC346B /* Pods-UniverseOnboardingTest.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		A2663A4A037CB02F279E28AC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A5FE362A2C1101D400952B95 /* StoreKit.framework */,
+				D3C456500AC54B6C50FA2FC1 /* Pods_UniverseOnboardingTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A5FE35E22C10442C00952B95 = {
 			isa = PBXGroup;
 			children = (
 				A5FE35ED2C10442C00952B95 /* UniverseOnboardingTest */,
 				A5FE35EC2C10442C00952B95 /* Products */,
+				784ED01ED82BC129FBDFEE03 /* Pods */,
+				A2663A4A037CB02F279E28AC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -82,6 +112,7 @@
 		A5FE35ED2C10442C00952B95 /* UniverseOnboardingTest */ = {
 			isa = PBXGroup;
 			children = (
+				A5FE36272C10E02A00952B95 /* Service */,
 				A5FE36192C1059C100952B95 /* Common */,
 				A5FE360F2C10486100952B95 /* Base */,
 				A5FE36072C10464500952B95 /* Onboarding */,
@@ -169,6 +200,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		A5FE36272C10E02A00952B95 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				A5FE36282C10E04400952B95 /* NetworkService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -176,9 +215,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A5FE35FF2C10442E00952B95 /* Build configuration list for PBXNativeTarget "UniverseOnboardingTest" */;
 			buildPhases = (
+				BB45A178855D945D311C2D27 /* [CP] Check Pods Manifest.lock */,
 				A5FE35E72C10442C00952B95 /* Sources */,
 				A5FE35E82C10442C00952B95 /* Frameworks */,
 				A5FE35E92C10442C00952B95 /* Resources */,
+				C5805BE84A2B8157900B6942 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -240,6 +281,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		BB45A178855D945D311C2D27 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-UniverseOnboardingTest-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C5805BE84A2B8157900B6942 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-UniverseOnboardingTest/Pods-UniverseOnboardingTest-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-UniverseOnboardingTest/Pods-UniverseOnboardingTest-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-UniverseOnboardingTest/Pods-UniverseOnboardingTest-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		A5FE35E72C10442C00952B95 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -250,6 +333,7 @@
 				A5FE361E2C1063B600952B95 /* CollectionView+.swift in Sources */,
 				A5FE35EF2C10442C00952B95 /* AppDelegate.swift in Sources */,
 				A5FE35F12C10442C00952B95 /* SceneDelegate.swift in Sources */,
+				A5FE36292C10E04400952B95 /* NetworkService.swift in Sources */,
 				A5FE36262C10888800952B95 /* UITextView+Hyperlinks.swift in Sources */,
 				A5FE36032C1045B600952B95 /* OnboardingViewController.swift in Sources */,
 				A5FE36132C104A6100952B95 /* OnboardingView.swift in Sources */,
@@ -399,12 +483,14 @@
 		};
 		A5FE36002C10442E00952B95 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 55CD9AE69343E624AB1676CF /* Pods-UniverseOnboardingTest.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = H32J47ML7Z;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = UniverseOnboardingTest/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -426,12 +512,14 @@
 		};
 		A5FE36012C10442E00952B95 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1117CCAA136F38B663BC346B /* Pods-UniverseOnboardingTest.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = H32J47ML7Z;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = UniverseOnboardingTest/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

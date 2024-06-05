@@ -29,8 +29,10 @@ class PaywallViewController: UIViewController {
     }
     
     private func setupButton() {
-        let closeAction = UIAction { action in
+        let closeAction = UIAction { [weak self] action in
+            guard let self else { return }
             print("Close paywall")
+            dismiss(animated: true)
         }
         mainView.closeButton.addAction(closeAction, for: .touchUpInside)
         

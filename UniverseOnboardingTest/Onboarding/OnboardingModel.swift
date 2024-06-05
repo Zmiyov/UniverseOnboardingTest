@@ -7,6 +7,10 @@
 
 import Foundation
 
+struct OnboardingModelContainer: Codable {
+    let items: [OnboardingModel]
+}
+
 struct OnboardingModel: Codable {
     let id: Int
     let question: String
