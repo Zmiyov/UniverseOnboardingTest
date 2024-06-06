@@ -10,6 +10,7 @@
 		7D779C178F193A17FD299A54 /* Pods_UniverseOnboardingTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3C456500AC54B6C50FA2FC1 /* Pods_UniverseOnboardingTest.framework */; };
 		A59439292C11E39D002AC938 /* InAppPurchaseManagerSK2.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59439282C11E39D002AC938 /* InAppPurchaseManagerSK2.swift */; };
 		A594392B2C11FB0A002AC938 /* StoreKitConfig.storekit in Resources */ = {isa = PBXBuildFile; fileRef = A594392A2C11FB0A002AC938 /* StoreKitConfig.storekit */; };
+		A59738792C1259E00052D235 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A59738782C1259E00052D235 /* Colors.xcassets */; };
 		A5FE35EF2C10442C00952B95 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FE35EE2C10442C00952B95 /* AppDelegate.swift */; };
 		A5FE35F12C10442C00952B95 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FE35F02C10442C00952B95 /* SceneDelegate.swift */; };
 		A5FE35F32C10442C00952B95 /* AppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FE35F22C10442C00952B95 /* AppViewController.swift */; };
@@ -38,6 +39,7 @@
 		55CD9AE69343E624AB1676CF /* Pods-UniverseOnboardingTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniverseOnboardingTest.debug.xcconfig"; path = "Target Support Files/Pods-UniverseOnboardingTest/Pods-UniverseOnboardingTest.debug.xcconfig"; sourceTree = "<group>"; };
 		A59439282C11E39D002AC938 /* InAppPurchaseManagerSK2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppPurchaseManagerSK2.swift; sourceTree = "<group>"; };
 		A594392A2C11FB0A002AC938 /* StoreKitConfig.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = StoreKitConfig.storekit; sourceTree = "<group>"; };
+		A59738782C1259E00052D235 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		A5FE35EB2C10442C00952B95 /* UniverseOnboardingTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UniverseOnboardingTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5FE35EE2C10442C00952B95 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5FE35F02C10442C00952B95 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -95,6 +97,39 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		A59738752C1258D10052D235 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				A5FE360F2C10486100952B95 /* Base */,
+				A5FE36192C1059C100952B95 /* Common */,
+				A5FE36272C10E02A00952B95 /* Service */,
+				A59738772C12595B0052D235 /* Modules */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		A59738762C1259290052D235 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A5FE35F72C10442E00952B95 /* Assets.xcassets */,
+				A59738782C1259E00052D235 /* Colors.xcassets */,
+				A5FE35F92C10442E00952B95 /* LaunchScreen.storyboard */,
+				A5FE35FC2C10442E00952B95 /* Info.plist */,
+				A594392A2C11FB0A002AC938 /* StoreKitConfig.storekit */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		A59738772C12595B0052D235 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				A5FE36072C10464500952B95 /* Onboarding */,
+				A5FE36082C10465800952B95 /* Paywall */,
+				A5FE36092C10466400952B95 /* Main */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
 		A5FE35E22C10442C00952B95 = {
 			isa = PBXGroup;
 			children = (
@@ -116,17 +151,9 @@
 		A5FE35ED2C10442C00952B95 /* UniverseOnboardingTest */ = {
 			isa = PBXGroup;
 			children = (
-				A5FE36272C10E02A00952B95 /* Service */,
-				A5FE36192C1059C100952B95 /* Common */,
-				A5FE360F2C10486100952B95 /* Base */,
-				A5FE36072C10464500952B95 /* Onboarding */,
-				A5FE36082C10465800952B95 /* Paywall */,
-				A5FE36092C10466400952B95 /* Main */,
+				A59738752C1258D10052D235 /* Sources */,
+				A59738762C1259290052D235 /* Resources */,
 				A5FE36062C1045F600952B95 /* Application */,
-				A5FE35F72C10442E00952B95 /* Assets.xcassets */,
-				A5FE35F92C10442E00952B95 /* LaunchScreen.storyboard */,
-				A5FE35FC2C10442E00952B95 /* Info.plist */,
-				A594392A2C11FB0A002AC938 /* StoreKitConfig.storekit */,
 			);
 			path = UniverseOnboardingTest;
 			sourceTree = "<group>";
@@ -281,6 +308,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A594392B2C11FB0A002AC938 /* StoreKitConfig.storekit in Resources */,
+				A59738792C1259E00052D235 /* Colors.xcassets in Resources */,
 				A5FE35F82C10442E00952B95 /* Assets.xcassets in Resources */,
 				A5FE35FB2C10442E00952B95 /* Base in Resources */,
 			);
@@ -500,7 +528,7 @@
 				DEVELOPMENT_TEAM = H32J47ML7Z;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = UniverseOnboardingTest/Info.plist;
+				INFOPLIST_FILE = UniverseOnboardingTest/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -529,7 +557,7 @@
 				DEVELOPMENT_TEAM = H32J47ML7Z;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = UniverseOnboardingTest/Info.plist;
+				INFOPLIST_FILE = UniverseOnboardingTest/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;

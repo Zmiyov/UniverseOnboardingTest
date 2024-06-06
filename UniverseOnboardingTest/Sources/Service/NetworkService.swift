@@ -36,15 +36,6 @@ final class NetworkService {
                 return result.data
             }
             .decode(type: T.self, decoder: JSONDecoder())
-//            .map { data in
-//                do {
-//                    let models = try JSONDecoder().decode(T.self, from: data)
-//                    return models
-//                }
-//                catch let error {
-//                    throw Error.invalidJSON(error)
-//                }
-//            }
             .observe(on: MainScheduler.instance)
             .asObservable()
     }
