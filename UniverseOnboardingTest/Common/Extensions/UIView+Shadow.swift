@@ -14,7 +14,6 @@ enum ShadowDestination {
 
 extension UIView {
     func drawShadow(destination: ShadowDestination) {
-        
         layer.masksToBounds = false
         layer.shadowColor = UIColor.shadowGray.cgColor
         layer.shadowOpacity = 0.25

@@ -20,7 +20,6 @@ final class AppMainView: BaseOnboardingView {
         label.textAlignment = .center
         label.textColor = .blackFont
         label.font = Fonts.onbTitleBold()
-        label.text = "Subscribsion isn't active"
         return label
     }()
     
@@ -31,15 +30,6 @@ final class AppMainView: BaseOnboardingView {
         stack.alignment = .center
         return stack
     }()
-    
-//    lazy var subButton: UIButton = {
-//        var button = UIButton()
-//        button.setTitle("Subscribe", for: .normal)
-//        button.setTitleColor(.white, for: .normal)
-//        button.backgroundColor = .systemBlue
-//        button.layer.cornerRadius = 12
-//        return button
-//    }()
     
     override func setupView() {
         super.setupView()
@@ -59,12 +49,5 @@ final class AppMainView: BaseOnboardingView {
             make.center.equalToSuperview()
             make.horizontalEdges.equalToSuperview()
         }
-        
-//        addSubview(subButton)
-//        subButton.snp.makeConstraints { make in
-//            make.top.equalTo(stackView.snp.bottom)
-//            make.width.equalTo(100)
-//            make.centerX.equalToSuperview()
-//        }
     }
 }

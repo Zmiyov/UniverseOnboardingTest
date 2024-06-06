@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AppViewController: UIViewController {
+final class AppViewController: UIViewController {
     
     lazy var mainView: AppMainView = {
         var view = AppMainView()
@@ -26,16 +26,6 @@ class AppViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         checkInApp()
-//        showPaywall(animated: false)
-//        setupButton()
-    }
-
-    private func showPaywall(animated: Bool) {
-        guard !isSubscribed else { return }
-        let paywallVC = PaywallViewController()
-        paywallVC.modalPresentationStyle = .overCurrentContext
-        paywallVC.modalTransitionStyle = .coverVertical
-        present(paywallVC, animated: animated)
     }
     
     private func checkInApp() {
@@ -44,19 +34,11 @@ class AppViewController: UIViewController {
         
         if isSubscribed {
             mainView.imageView.image = subscribedImage
-            mainView.label.text = "Subscribsion is active"
+            mainView.label.text = MainAppScreenTxt.subscribed
         } else {
             mainView.imageView.image = unsubscribedImage
-            mainView.label.text = "Subscribsion isn't active"
+            mainView.label.text = MainAppScreenTxt.unSubscribed
         }
     }
-    
-//    private func setupButton() {
-//        let subButtonAction = UIAction { [weak self] act in
-//            guard let self else { return }
-//            showPaywall(animated: true)
-//        }
-//        mainView.subButton.addAction(subButtonAction, for: .touchUpInside)
-//    }
 }
 

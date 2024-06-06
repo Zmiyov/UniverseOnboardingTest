@@ -22,7 +22,6 @@ extension UITextView {
         attributedOriginalText.addAttribute(NSAttributedString.Key.paragraphStyle, value: style, range: fullRange)
         attributedOriginalText.addAttribute(NSAttributedString.Key.font, value: UIFont.systemFont(ofSize: 12, weight: .regular), range: fullRange)
     }
-
     self.attributedText = attributedOriginalText
   }
 }

@@ -13,14 +13,14 @@ final class OnboardingCollectionViewCell: UICollectionViewCell {
     private enum Constants {
         static let inset: CGFloat = 16
         static let cornerRadius: CGFloat = 16
+        static let titleFontSize: CGFloat = 17
     }
     
     lazy var titleLabel: UILabel = {
         var label = UILabel()
         label.textAlignment = .left
         label.textColor = .blackFont
-        label.font = Fonts.onbTitleSemiBold(17)
-        label.text = "test"
+        label.font = Fonts.onbTitleSemiBold(Constants.titleFontSize)
         return label
     }()
     
@@ -37,7 +37,6 @@ final class OnboardingCollectionViewCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         layer.cornerRadius = Constants.cornerRadius
-//        self.drawShadow(destination: .cell)
     }
     
     func setupView() {
@@ -45,7 +44,6 @@ final class OnboardingCollectionViewCell: UICollectionViewCell {
     }
     
     func setupConstrains() {
-        
         addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(Constants.inset)

@@ -61,14 +61,6 @@ final class PaywallView: BaseOnboardingView {
         return textView
     }()
     
-    lazy var indicator: UIActivityIndicatorView = {
-        let indicator: UIActivityIndicatorView = UIActivityIndicatorView(style: .large)
-        indicator.hidesWhenStopped = true
-        indicator.color = .white
-        indicator.isHidden = true
-        return indicator
-    }()
-    
     override func layoutSubviews() {
         super.layoutSubviews()
         startButton.layer.cornerRadius = startButton.frame.height / 2
@@ -151,11 +143,6 @@ final class PaywallView: BaseOnboardingView {
             make.trailing.equalToSuperview().inset(16)
             make.top.equalTo(safeAreaLayoutGuide.snp.top)
             make.size.equalTo(24)
-        }
-        
-        addSubview(indicator)
-        indicator.snp.makeConstraints { make in
-            make.center.equalToSuperview()
         }
         
     }

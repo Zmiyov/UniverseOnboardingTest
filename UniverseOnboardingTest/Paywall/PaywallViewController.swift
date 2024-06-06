@@ -15,18 +15,15 @@ final class PaywallViewController: UIViewController {
         return view
     }()
     
-    override func loadView() {
-        super.loadView()
-        self.view = mainView
-    }
-    
+    private var purchaseManager = PurchaseManager.shared
     private var monthlyPriceLabel: String = "$6.99" {
         didSet { setPriceInLabel(price: self.monthlyPriceLabel) }
     }
     
-    //MARK: - SK2 manager -
-    
-    private var purchaseManager = PurchaseManager.shared
+    override func loadView() {
+        super.loadView()
+        self.view = mainView
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,23 +40,16 @@ final class PaywallViewController: UIViewController {
         let closeAction = UIAction { [weak self] action in
             guard let self else { return }
             dismiss(animated: true)
-//            SceneDelegate.shared?.presentMainApp()
         }
         mainView.closeButton.addAction(closeAction, for: .touchUpInside)
         
         let buyAction = UIAction { [weak self] action in
             guard let self else { return }
-            
             if let mainSubProduct = purchaseManager.products.first(where: { $0.id == PurchaseProductID.main.rawValue }) {
-                
                 Task {
                     do {
                         let result = try await self.purchaseManager.purchase(mainSubProduct)
                         if result {
-//                            self.dismiss(animated: true) {
-//                                SceneDelegate.shared?.presentMainApp()
-//                            }
-//                            SceneDelegate.shared?.presentMainApp()
                             self.showApp()
                         }
                     } catch {
@@ -75,28 +65,6 @@ final class PaywallViewController: UIViewController {
         mainView.setupAttributedLabel(price: price)
     }
     
-    private func startLoading() {
-        mainView.indicator.isHidden = false
-        mainView.indicator.startAnimating()
-    }
-    
-    private func stopLoading() {
-        mainView.indicator.stopAnimating()
-    }
-    
-    private func loadProducts(){
-        Task {
-            do {
-                try await purchaseManager.loadProducts()
-                if let mainSubProduct = purchaseManager.products.first(where: { $0.id == PurchaseProductID.main.rawValue }) {
-                    self.monthlyPriceLabel = mainSubProduct.displayPrice
-                }
-            } catch {
-                print(error)
-            }
-        }
-    }
-    
     private func showApp() {
         guard let sceneDelegate = UIApplication.shared.connectedScenes.first!.delegate as? SceneDelegate,
               let window = sceneDelegate.window else { return }
@@ -108,7 +76,21 @@ final class PaywallViewController: UIViewController {
         
         let options: UIView.AnimationOptions = .transitionCrossDissolve
         let duration: TimeInterval = 0.3
-
         UIView.transition(with: window, duration: duration, options: options, animations: {})
+    }
+}
+
+extension PaywallViewController {
+    private func loadProducts(){
+        Task {
+            do {
+                try await purchaseManager.loadProducts()
+                if let mainSubProduct = purchaseManager.products.first(where: { $0.id == PurchaseProductID.main.rawValue }) {
+                    self.monthlyPriceLabel = mainSubProduct.displayPrice
+                }
+            } catch {
+                print(error)
+            }
+        }
     }
 }

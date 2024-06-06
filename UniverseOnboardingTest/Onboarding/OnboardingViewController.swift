@@ -10,12 +10,13 @@ import RxSwift
 
 final class OnboardingViewController: UIViewController {
     
-    let disposeBag = DisposeBag()
+    private enum Constants {
+        static let cellHeight: CGFloat = 52
+    }
     
-    var models: [OnboardingModel]?
-    
-    var pageIndex: Int = 0
-
+    private let disposeBag = DisposeBag()
+    private var models: [OnboardingModel]?
+    private var pageIndex: Int = 0
     private var selectedCellIndex: Int?
     
     lazy var mainView: OnboardingView = {
@@ -64,22 +65,16 @@ final class OnboardingViewController: UIViewController {
                 paywallVC.modalPresentationStyle = .overCurrentContext
                 paywallVC.modalTransitionStyle = .coverVertical
                 present(paywallVC, animated: true)
-                
-                //Open app
-//                let appVC = AppViewController()
-//                navigationController?.pushViewController(appVC, animated: false)
             } else {
                 print("Err")
             }
         }
-        
         mainView.continueButton.addAction(action, for: .touchUpInside)
     }
     
-    func fetchData() {
-        NetworkService.shared.fetchData()
-            .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { [weak self] onboardingModels in
+    private func fetchData() {
+        NetworkService.shared.fetchData(from: Endpoints.onboarding.rawValue)
+            .subscribe(onNext: { [weak self] (onboardingModels: OnboardingModelContainer) in
                 guard let self = self else { return }
                 models = onboardingModels.items
                 updatePage()
@@ -139,7 +134,7 @@ extension OnboardingViewController: UICollectionViewDelegateFlowLayout {
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
 
-        let height: CGFloat = 52
+        let height: CGFloat = Constants.cellHeight
         let width: CGFloat = (collectionView.bounds.width)
         return CGSize(width: width, height: height)
     }
