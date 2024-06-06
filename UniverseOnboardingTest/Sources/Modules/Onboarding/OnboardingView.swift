@@ -10,12 +10,16 @@ import SnapKit
 
 final class OnboardingView: BaseOnboardingView {
     
+    private enum OnbardingViewConstants {
+        static let continueButtonTitleSize: CGFloat = 17
+    }
+    
     lazy var titleLabel: UILabel = {
         var label = UILabel()
         label.textAlignment = .left
         label.textColor = .blackFont
         label.font = Fonts.onbTitleBold()
-        label.text = "Let’s setup App for you"
+        label.text = OnboardingScreenTxt.title
         return label
     }()
     
@@ -40,9 +44,9 @@ final class OnboardingView: BaseOnboardingView {
     lazy var continueButton: UIButton = {
         var button = UIButton()
         button.backgroundColor = .buttonBlack
-        button.setTitle("Continue", for: .normal)
+        button.setTitle(OnboardingScreenTxt.buttonTitle, for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = Fonts.onbTitleSemiBold(17)
+        button.titleLabel?.font = Fonts.onbTitleSemiBold(OnbardingViewConstants.continueButtonTitleSize)
         return button
     }()
     

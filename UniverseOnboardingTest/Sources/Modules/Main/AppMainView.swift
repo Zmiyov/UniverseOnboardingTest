@@ -37,11 +37,16 @@ final class AppMainView: BaseOnboardingView {
     
     override func setupConstrains() {
         super.setupConstrains()
+        
+        enum Constants {
+            static let imageSize: CGFloat = 100
+        }
+        
         stackView.addArrangedSubview(imageView)
         stackView.addArrangedSubview(label)
         
         imageView.snp.makeConstraints { make in
-            make.size.equalTo(100)
+            make.size.equalTo(Constants.imageSize)
         }
         
         addSubview(stackView)

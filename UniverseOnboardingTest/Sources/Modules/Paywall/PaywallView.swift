@@ -10,6 +10,11 @@ import SnapKit
 
 final class PaywallView: BaseOnboardingView {
     
+    private enum PaywallViewConstants {
+        static let termsFontSize: CGFloat = 16
+        static let startButtonTitleFontSize: CGFloat = 17
+    }
+    
     lazy var topImage: UIImageView = {
         var imageView = UIImageView()
         imageView.image = UIImage(named: "paywallImage")
@@ -36,7 +41,6 @@ final class PaywallView: BaseOnboardingView {
         var label = UILabel()
         label.textAlignment = .left
         label.textColor = .paywallTextGray
-        label.font = Fonts.onbTitleMedium(16)
         label.numberOfLines = 0
         return label
     }()
@@ -46,7 +50,7 @@ final class PaywallView: BaseOnboardingView {
         button.backgroundColor = .buttonBlack
         button.setTitle(PaywallScreenTxt.buttonTitle, for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = Fonts.onbTitleSemiBold(17)
+        button.titleLabel?.font = Fonts.onbTitleSemiBold(PaywallViewConstants.startButtonTitleFontSize)
         return button
     }()
     
@@ -78,8 +82,8 @@ final class PaywallView: BaseOnboardingView {
         let attributedString = NSMutableAttributedString(string: text)
         
         let boldRange = (text as NSString).range(of: price)
-        attributedString.addAttribute(.font, value: UIFont.systemFont(ofSize: 16), range: NSRange(location: 0, length: text.count))
-        attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 16), range: boldRange)
+        attributedString.addAttribute(.font, value: Fonts.onbTitleMedium(PaywallViewConstants.termsFontSize), range: NSRange(location: 0, length: text.count))
+        attributedString.addAttribute(.font, value: Fonts.onbTitleBold(PaywallViewConstants.termsFontSize), range: boldRange)
         attributedString.addAttribute(.foregroundColor, value: UIColor.blackFont, range: boldRange)
         
         trialTermsLabel.attributedText = attributedString
