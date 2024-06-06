@@ -49,16 +49,14 @@ class PaywallViewController: UIViewController {
     private func setupButton() {
         let closeAction = UIAction { [weak self] action in
             guard let self else { return }
-            print("Close paywall")
             dismiss(animated: true)
         }
         mainView.closeButton.addAction(closeAction, for: .touchUpInside)
         
         let buyAction = UIAction { [weak self] action in
             guard let self else { return }
-            print("Buy subscription")
             
-            if let mainSubProduct = purchaseManager.products.first(where: { $0.displayName == PurchaseDisplayName.mainSub.rawValue }) {
+            if let mainSubProduct = purchaseManager.products.first(where: { $0.id == PurchaseProductID.main.rawValue }) {
                 
                 Task {
                     do {
