@@ -14,7 +14,7 @@ enum OnboardingScreenTxt {
 
 enum PaywallScreenTxt {
     static let title = "Discover all \nPremium features"
-    static let trialTitle = "Try 7 days for free \nthen $6.99 per week, auto-renewable"
+//    static let trialTitle = "Try 7 days for free \nthen $6.99 per week, auto-renewable"
     static let buttonTitle = "Start Now"
     static let termsTitle = "By continuing you accept our: \nTerms of Use, Privacy Policy, Subscription Terms"
 }

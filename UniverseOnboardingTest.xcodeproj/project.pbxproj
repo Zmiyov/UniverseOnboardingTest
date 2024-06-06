@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		7D779C178F193A17FD299A54 /* Pods_UniverseOnboardingTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3C456500AC54B6C50FA2FC1 /* Pods_UniverseOnboardingTest.framework */; };
+		A59439272C119F30002AC938 /* InAppPurchaseHandlerSK1.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59439262C119F30002AC938 /* InAppPurchaseHandlerSK1.swift */; };
+		A59439292C11E39D002AC938 /* InAppPurchaseManagerSK2.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59439282C11E39D002AC938 /* InAppPurchaseManagerSK2.swift */; };
 		A5FE35EF2C10442C00952B95 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FE35EE2C10442C00952B95 /* AppDelegate.swift */; };
 		A5FE35F12C10442C00952B95 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FE35F02C10442C00952B95 /* SceneDelegate.swift */; };
 		A5FE35F32C10442C00952B95 /* AppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FE35F22C10442C00952B95 /* AppViewController.swift */; };
@@ -34,6 +36,8 @@
 /* Begin PBXFileReference section */
 		1117CCAA136F38B663BC346B /* Pods-UniverseOnboardingTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniverseOnboardingTest.release.xcconfig"; path = "Target Support Files/Pods-UniverseOnboardingTest/Pods-UniverseOnboardingTest.release.xcconfig"; sourceTree = "<group>"; };
 		55CD9AE69343E624AB1676CF /* Pods-UniverseOnboardingTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniverseOnboardingTest.debug.xcconfig"; path = "Target Support Files/Pods-UniverseOnboardingTest/Pods-UniverseOnboardingTest.debug.xcconfig"; sourceTree = "<group>"; };
+		A59439262C119F30002AC938 /* InAppPurchaseHandlerSK1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppPurchaseHandlerSK1.swift; sourceTree = "<group>"; };
+		A59439282C11E39D002AC938 /* InAppPurchaseManagerSK2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppPurchaseManagerSK2.swift; sourceTree = "<group>"; };
 		A5FE35EB2C10442C00952B95 /* UniverseOnboardingTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UniverseOnboardingTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5FE35EE2C10442C00952B95 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5FE35F02C10442C00952B95 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -204,6 +208,8 @@
 			isa = PBXGroup;
 			children = (
 				A5FE36282C10E04400952B95 /* NetworkService.swift */,
+				A59439262C119F30002AC938 /* InAppPurchaseHandlerSK1.swift */,
+				A59439282C11E39D002AC938 /* InAppPurchaseManagerSK2.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -342,7 +348,9 @@
 				A5FE36182C1057B000952B95 /* OnboardingModel.swift in Sources */,
 				A5FE36052C1045C600952B95 /* PaywallViewController.swift in Sources */,
 				A5FE361B2C1059CB00952B95 /* Fonts.swift in Sources */,
+				A59439272C119F30002AC938 /* InAppPurchaseHandlerSK1.swift in Sources */,
 				A5FE360E2C1047CB00952B95 /* AppMainView.swift in Sources */,
+				A59439292C11E39D002AC938 /* InAppPurchaseManagerSK2.swift in Sources */,
 				A5FE36242C107C0700952B95 /* TextConstants.swift in Sources */,
 				A5FE36162C10577F00952B95 /* OnboardingCollectionViewCell.swift in Sources */,
 			);

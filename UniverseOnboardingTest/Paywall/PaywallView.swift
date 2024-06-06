@@ -61,6 +61,14 @@ final class PaywallView: BaseOnboardingView {
         return textView
     }()
     
+    lazy var indicator: UIActivityIndicatorView = {
+        let indicator: UIActivityIndicatorView = UIActivityIndicatorView(style: .large)
+        indicator.hidesWhenStopped = true
+        indicator.color = .white
+        indicator.isHidden = true
+        return indicator
+    }()
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         startButton.layer.cornerRadius = startButton.frame.height / 2
@@ -69,15 +77,15 @@ final class PaywallView: BaseOnboardingView {
     
     override func setupView() {
         super.setupView()
-        setupAttributedLabel()
+        
         setupAttributedTextView()
     }
     
-    private func setupAttributedLabel() {
-        let text = PaywallScreenTxt.trialTitle
+    func setupAttributedLabel(price: String) {
+        let text = "Try 7 days for free \nthen \(price) per week, auto-renewable"
         let attributedString = NSMutableAttributedString(string: text)
         
-        let boldRange = (text as NSString).range(of: "$6.99")
+        let boldRange = (text as NSString).range(of: price)
         attributedString.addAttribute(.font, value: UIFont.systemFont(ofSize: 16), range: NSRange(location: 0, length: text.count))
         attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 16), range: boldRange)
         attributedString.addAttribute(.foregroundColor, value: UIColor.blackFont, range: boldRange)
@@ -143,6 +151,11 @@ final class PaywallView: BaseOnboardingView {
             make.trailing.equalToSuperview().inset(16)
             make.top.equalTo(safeAreaLayoutGuide.snp.top)
             make.size.equalTo(24)
+        }
+        
+        addSubview(indicator)
+        indicator.snp.makeConstraints { make in
+            make.center.equalToSuperview()
         }
         
     }
