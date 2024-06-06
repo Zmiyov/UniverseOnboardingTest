@@ -2,15 +2,13 @@
 //  PaywallViewController.swift
 //  UniverseOnboardingTest
 //
-//  Created by Vladimir Pisarenko on 05.06.2024.
+//  Created by Volodymyr Pysarenko on 05.06.2024.
 //
 
 import UIKit
 import StoreKit
-import RxRelay
-import RxSwift
 
-class PaywallViewController: UIViewController {
+final class PaywallViewController: UIViewController {
     
     lazy var mainView: PaywallView = {
         var view = PaywallView()
@@ -22,7 +20,9 @@ class PaywallViewController: UIViewController {
         self.view = mainView
     }
     
-    private var monthlyPriceLabel: String = "$6.99"
+    private var monthlyPriceLabel: String = "$6.99" {
+        didSet { setPriceInLabel(price: self.monthlyPriceLabel) }
+    }
     
     //MARK: - SK2 manager -
     
@@ -31,25 +31,19 @@ class PaywallViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        
-        Task {
-            do {
-                try await purchaseManager.loadProducts()
-            } catch {
-                print(error)
-            }
-        }
+        loadProducts()
     }
     
     private func setupUI() {
         setupButton()
-        setPriceInLabel()
+        setPriceInLabel(price: self.monthlyPriceLabel)
     }
     
     private func setupButton() {
         let closeAction = UIAction { [weak self] action in
             guard let self else { return }
-            dismiss(animated: true)
+            dismiss(animated: true) 
+//            SceneDelegate.shared?.presentMainApp()
         }
         mainView.closeButton.addAction(closeAction, for: .touchUpInside)
         
@@ -60,7 +54,13 @@ class PaywallViewController: UIViewController {
                 
                 Task {
                     do {
-                        try await self.purchaseManager.purchase(mainSubProduct)
+                        let result = try await self.purchaseManager.purchase(mainSubProduct)
+                        if result {
+//                            self.dismiss(animated: true) {
+//                                SceneDelegate.shared?.presentMainApp()
+//                            }
+                            SceneDelegate.shared?.presentMainApp()
+                        }
                     } catch {
                         print(error)
                     }
@@ -70,8 +70,8 @@ class PaywallViewController: UIViewController {
         mainView.startButton.addAction(buyAction, for: .touchUpInside)
     }
     
-    private func setPriceInLabel() {
-        mainView.setupAttributedLabel(price: self.monthlyPriceLabel)
+    private func setPriceInLabel(price: String) {
+        mainView.setupAttributedLabel(price: price)
     }
     
     private func startLoading() {
@@ -82,5 +82,17 @@ class PaywallViewController: UIViewController {
     private func stopLoading() {
         mainView.indicator.stopAnimating()
     }
+    
+    private func loadProducts(){
+        Task {
+            do {
+                try await purchaseManager.loadProducts()
+                if let mainSubProduct = purchaseManager.products.first(where: { $0.id == PurchaseProductID.main.rawValue }) {
+                    self.monthlyPriceLabel = mainSubProduct.displayPrice
+                }
+            } catch {
+                print(error)
+            }
+        }
+    }
 }
-

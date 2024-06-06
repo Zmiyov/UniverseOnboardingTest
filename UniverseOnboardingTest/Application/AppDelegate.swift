@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  UniverseOnboardingTest
 //
-//  Created by Vladimir Pisarenko on 05.06.2024.
+//  Created by Volodymyr Pysarenko on 05.06.2024.
 //
 
 import UIKit
@@ -14,9 +14,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        Task {
-            await purchaseManager.updatePurchasedProducts()
-        }
+//        Task {
+//            await purchaseManager.updatePurchasedProducts()
+//        }
         
         return true
     }

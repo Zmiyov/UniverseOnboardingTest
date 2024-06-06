@@ -2,7 +2,7 @@
 //  NetworkService.swift
 //  UniverseOnboardingTest
 //
-//  Created by Vladimir Pisarenko on 05.06.2024.
+//  Created by Volodymyr Pysarenko on 05.06.2024.
 //
 
 import Foundation

@@ -2,7 +2,7 @@
 //  OnboardingViewController.swift
 //  UniverseOnboardingTest
 //
-//  Created by Vladimir Pisarenko on 05.06.2024.
+//  Created by Volodymyr Pysarenko on 05.06.2024.
 //
 
 import UIKit
@@ -32,7 +32,6 @@ final class OnboardingViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setupUI()
         fetchData()
     }
@@ -65,6 +64,10 @@ final class OnboardingViewController: UIViewController {
                 paywallVC.modalPresentationStyle = .overCurrentContext
                 paywallVC.modalTransitionStyle = .coverVertical
                 present(paywallVC, animated: true)
+                
+                //Open app
+//                let appVC = AppViewController()
+//                navigationController?.pushViewController(appVC, animated: false)
             } else {
                 print("Err")
             }

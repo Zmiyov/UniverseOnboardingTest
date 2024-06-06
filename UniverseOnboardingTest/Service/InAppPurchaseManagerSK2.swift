@@ -2,7 +2,7 @@
 //  InAppPurchaseManagerSK2.swift
 //  UniverseOnboardingTest
 //
-//  Created by Vladimir Pisarenko on 06.06.2024.
+//  Created by Volodymyr Pysarenko on 06.06.2024.
 //
 
 import StoreKit
@@ -19,10 +19,9 @@ class PurchaseManager {
     
     static let shared = PurchaseManager()
     
-    private let productIds: [String] = PurchaseProductID.allCases.map { $0.rawValue }
     private(set) var products: [Product] = []
-    private var productsLoaded = false
     private(set) var purchasedProductIDs = Set<String>()
+    private var productsLoaded = false
     
     var hasUnlockedPro: Bool {
         return !self.purchasedProductIDs.isEmpty
@@ -40,11 +39,12 @@ class PurchaseManager {
     
     func loadProducts() async throws {
         guard !self.productsLoaded else { return }
+        let productIds: [String] = PurchaseProductID.allCases.map { $0.rawValue }
         self.products = try await Product.products(for: productIds)
         self.productsLoaded = true
     }
     
-    func purchase(_ product: Product) async throws {
+    func purchase(_ product: Product) async throws -> Bool {
         let result = try await product.purchase()
         
         switch result {
@@ -52,19 +52,20 @@ class PurchaseManager {
             // Successful purhcase
             await transaction.finish()
             await self.updatePurchasedProducts()
+            return true
         case let .success(.unverified(_, error)):
             // Successful purchase but transaction/receipt can't be verified
             // Could be a jailbroken phone
-            break
+            return false
         case .pending:
             // Transaction waiting on SCA (Strong Customer Authentication) or
             // approval from Ask to Buy
-            break
+            return false
         case .userCancelled:
             // ^^^
-            break
+            return false
         @unknown default:
-            break
+            return false
         }
     }
     
@@ -90,3 +91,4 @@ class PurchaseManager {
         }
     }
 }
+
