@@ -7,15 +7,19 @@
 
 import StoreKit
 
+enum PurchaseProductID: String, CaseIterable {
+    case main = "mainSubID"
+}
+
 enum PurchaseDisplayName: String, CaseIterable {
-    case main = "main"
+    case mainSub = "mainSub"
 }
 
 class PurchaseManager {
     
     static let shared = PurchaseManager()
     
-    private let productIds = ["mainSub"]
+    private let productIds: [String] = PurchaseProductID.allCases.map { $0.rawValue }
     private(set) var products: [Product] = []
     private var productsLoaded = false
     private(set) var purchasedProductIDs = Set<String>()
