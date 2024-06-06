@@ -42,7 +42,7 @@ final class PaywallViewController: UIViewController {
     private func setupButton() {
         let closeAction = UIAction { [weak self] action in
             guard let self else { return }
-            dismiss(animated: true) 
+            dismiss(animated: true)
 //            SceneDelegate.shared?.presentMainApp()
         }
         mainView.closeButton.addAction(closeAction, for: .touchUpInside)
@@ -59,7 +59,8 @@ final class PaywallViewController: UIViewController {
 //                            self.dismiss(animated: true) {
 //                                SceneDelegate.shared?.presentMainApp()
 //                            }
-                            SceneDelegate.shared?.presentMainApp()
+//                            SceneDelegate.shared?.presentMainApp()
+                            self.showApp()
                         }
                     } catch {
                         print(error)
@@ -94,5 +95,20 @@ final class PaywallViewController: UIViewController {
                 print(error)
             }
         }
+    }
+    
+    private func showApp() {
+        guard let sceneDelegate = UIApplication.shared.connectedScenes.first!.delegate as? SceneDelegate,
+              let window = sceneDelegate.window else { return }
+        
+        let appVC = AppViewController()
+        let navigationController = UINavigationController(rootViewController: appVC)
+        navigationController.isNavigationBarHidden = true
+        window.rootViewController = navigationController
+        
+        let options: UIView.AnimationOptions = .transitionCrossDissolve
+        let duration: TimeInterval = 0.3
+
+        UIView.transition(with: window, duration: duration, options: options, animations: {})
     }
 }

@@ -26,8 +26,8 @@ class AppViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         checkInApp()
-        showPaywall(animated: false)
-        setupButton()
+//        showPaywall(animated: false)
+//        setupButton()
     }
 
     private func showPaywall(animated: Bool) {
@@ -44,17 +44,19 @@ class AppViewController: UIViewController {
         
         if isSubscribed {
             mainView.imageView.image = subscribedImage
+            mainView.label.text = "Subscribsion is active"
         } else {
             mainView.imageView.image = unsubscribedImage
+            mainView.label.text = "Subscribsion isn't active"
         }
     }
     
-    private func setupButton() {
-        let subButtonAction = UIAction { [weak self] act in
-            guard let self else { return }
-            showPaywall(animated: true)
-        }
-        mainView.subButton.addAction(subButtonAction, for: .touchUpInside)
-    }
+//    private func setupButton() {
+//        let subButtonAction = UIAction { [weak self] act in
+//            guard let self else { return }
+//            showPaywall(animated: true)
+//        }
+//        mainView.subButton.addAction(subButtonAction, for: .touchUpInside)
+//    }
 }
 
