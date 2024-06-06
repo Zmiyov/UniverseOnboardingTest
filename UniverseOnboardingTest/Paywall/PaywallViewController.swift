@@ -22,6 +22,8 @@ class PaywallViewController: UIViewController {
         self.view = mainView
     }
     
+    private var monthlyPriceLabel: String = "$6.99"
+    
     //MARK: - SK2 manager -
     
     private var purchaseManager = PurchaseManager.shared
