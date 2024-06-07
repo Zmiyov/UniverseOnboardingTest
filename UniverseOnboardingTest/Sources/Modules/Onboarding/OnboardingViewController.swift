@@ -7,6 +7,7 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 
 final class OnboardingViewController: UIViewController {
     
@@ -53,23 +54,28 @@ final class OnboardingViewController: UIViewController {
     }
     
     private func setupButtonAction() {
-        let action = UIAction { [weak self] act in
-            guard let self, let models else { return }
-            
-            if models.count - 1 > pageIndex {
-                pageIndex += 1
-                openNextPage()
-            } else if models.count - 1 == pageIndex {
-                //Open Paywall
-                let paywallVC = PaywallViewController()
-                paywallVC.modalPresentationStyle = .overCurrentContext
-                paywallVC.modalTransitionStyle = .coverVertical
-                present(paywallVC, animated: true)
-            } else {
-                print("Err")
-            }
+        mainView.continueButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                guard let self else { return }
+                nextButtonTapped()
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func nextButtonTapped() {
+        guard let models else { return }
+        if models.count - 1 > pageIndex {
+            pageIndex += 1
+            openNextPage()
+        } else if models.count - 1 == pageIndex {
+            //Open Paywall
+            let paywallVC = PaywallViewController()
+            paywallVC.modalPresentationStyle = .overCurrentContext
+            paywallVC.modalTransitionStyle = .coverVertical
+            present(paywallVC, animated: true)
+        } else if models.count == 0 {
+            print("No models")
         }
-        mainView.continueButton.addAction(action, for: .touchUpInside)
     }
     
     private func fetchData() {

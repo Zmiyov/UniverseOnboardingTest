@@ -7,6 +7,8 @@
 
 import UIKit
 import StoreKit
+import RxSwift
+import RxCocoa
 
 final class PaywallViewController: UIViewController {
     
@@ -15,6 +17,7 @@ final class PaywallViewController: UIViewController {
         return view
     }()
     
+    private let disposeBag = DisposeBag()
     private var purchaseManager = PurchaseManager.shared
     private var monthlyPriceLabel: String = "$6.99" {
         didSet { setPriceInLabel(price: self.monthlyPriceLabel) }
@@ -37,30 +40,21 @@ final class PaywallViewController: UIViewController {
     }
     
     private func setupButton() {
-        let closeAction = UIAction { [weak self] action in
-            guard let self else { return }
-            dismiss(animated: true)
-        }
-        mainView.closeButton.addAction(closeAction, for: .touchUpInside)
+        mainView.closeButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                guard let self else { return }
+                dismiss(animated: true)
+            })
+            .disposed(by: disposeBag)
         
-        let buyAction = UIAction { [weak self] action in
-            guard let self else { return }
-            if let mainSubProduct = purchaseManager.products.first(where: { $0.id == PurchaseProductID.main.rawValue }) {
-                Task {
-                    do {
-                        let result = try await self.purchaseManager.purchase(mainSubProduct)
-                        if result {
-                            self.showApp()
-                        }
-                    } catch {
-                        print(error)
-                    }
-                }
-            }
-        }
-        mainView.startButton.addAction(buyAction, for: .touchUpInside)
+        mainView.startButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                guard let self else { return }
+                puchaseIAP()
+            })
+            .disposed(by: disposeBag)
     }
-    
+
     private func setPriceInLabel(price: String) {
         mainView.setupAttributedLabel(price: price)
     }
@@ -87,6 +81,20 @@ extension PaywallViewController {
                 try await purchaseManager.loadProducts()
                 if let mainSubProduct = purchaseManager.products.first(where: { $0.id == PurchaseProductID.main.rawValue }) {
                     self.monthlyPriceLabel = mainSubProduct.displayPrice
+                }
+            } catch {
+                print(error)
+            }
+        }
+    }
+    
+    private func puchaseIAP() {
+        guard let mainSubProduct = purchaseManager.products.first(where: { $0.id == PurchaseProductID.main.rawValue }) else { return }
+        Task {
+            do {
+                let result = try await self.purchaseManager.purchase(mainSubProduct)
+                if result {
+                    self.showApp()
                 }
             } catch {
                 print(error)
