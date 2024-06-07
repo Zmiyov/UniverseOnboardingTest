@@ -10,21 +10,16 @@ import RxSwift
 import RxCocoa
 
 final class OnboardingViewController: UIViewController {
-    
+        
     private enum Constants {
         static let cellHeight: CGFloat = 52
     }
     
     private let disposeBag = DisposeBag()
     private let viewModel = OnboardingViewModel()
-    private var models: [OnboardingModel]?
-    private var pageIndex: Int = 0
-    private var selectedCellIndex: Int?
     
     lazy var mainView: OnboardingView = {
         var view = OnboardingView()
-        view.onbCollectionView.dataSource = self
-        view.onbCollectionView.delegate = self
         return view
     }()
     
@@ -35,8 +30,9 @@ final class OnboardingViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
         loadData()
+        setupUI()
+        configureCollectionView()
     }
     
     private func setupUI() {
@@ -45,7 +41,7 @@ final class OnboardingViewController: UIViewController {
     }
     
     private func continueButtonState() {
-        if selectedCellIndex != nil  {
+        if viewModel.selectedCellIndex != nil  {
             mainView.continueButton.backgroundColor = .buttonBlack
             mainView.continueButton.setTitleColor(.white, for: .normal)
         } else {
@@ -64,75 +60,60 @@ final class OnboardingViewController: UIViewController {
     }
     
     private func loadData() {
-        viewModel.dataArraySubject
+        viewModel.currentPageData
             .subscribe(onNext: { [weak self] (onboardingModels) in
                 guard let self = self else { return }
-                models = onboardingModels
-                updatePage()
+                mainView.pageNameLabel.text = onboardingModels?.question
             }, onError: { error in
                 print("Error: \(error)")
             })
             .disposed(by: disposeBag)
     }
     
-    private func updatePage() {
-        if let models {
-            mainView.pageNameLabel.text = models[pageIndex].question
-            mainView.onbCollectionView.reloadData()
-        }
-    }
-    
     private func openNextPage() {
-        selectedCellIndex = nil
+        viewModel.selectedCellIndex = nil
         continueButtonState()
-        updatePage()
     }
     
     private func nextButtonTapped() {
-        guard let models else { return }
-        if models.count - 1 > pageIndex {
-            pageIndex += 1
+        if viewModel.dataArray.count - 1 > viewModel.pageIndex {
+            viewModel.pageIndex += 1
             openNextPage()
-        } else if models.count - 1 == pageIndex {
-            //Open Paywall
+        } else if viewModel.dataArray.count - 1 == viewModel.pageIndex {
             let paywallVC = PaywallViewController()
             paywallVC.modalPresentationStyle = .overCurrentContext
             paywallVC.modalTransitionStyle = .coverVertical
             present(paywallVC, animated: true)
-        } else if models.count == 0 {
+        } else if viewModel.dataArray.count == 0 {
             print("No models")
         }
     }
 }
 
-extension OnboardingViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if let models {
-            return models[pageIndex].answers.count
-        } else {
-            return 0
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell: OnboardingCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
+extension OnboardingViewController {
+    func configureCollectionView() {
         
-        if let models {
-            cell.titleLabel.text = models[pageIndex].answers[indexPath.item]
-        }
+        mainView.onbCollectionView.rx
+            .setDelegate(self)
+            .disposed(by: disposeBag)
         
-        cell.backgroundColor = indexPath.item == selectedCellIndex ? .cellGreen : .white
-        cell.titleLabel.textColor = indexPath.item == selectedCellIndex ? .white : .blackFont
+        viewModel.currentAnswers
+            .bind(to: mainView.onbCollectionView.rx.items(cellIdentifier: "OnboardingCollectionViewCell", cellType: OnboardingCollectionViewCell.self)) { [weak self] index, element, cell in
+                guard let self else { return }
+                cell.titleLabel.text = element
+                cell.backgroundColor = index == viewModel.selectedCellIndex ? .cellGreen : .white
+                cell.titleLabel.textColor = index == viewModel.selectedCellIndex ? .white : .blackFont
+            }
+            .disposed(by: disposeBag)
         
-        return cell
-    }
-}
-
-extension OnboardingViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectedCellIndex = indexPath.item
-        collectionView.reloadData()
-        continueButtonState()
+        mainView.onbCollectionView.rx.itemSelected
+            .subscribe(onNext: { [weak self] indexPath in
+                guard let self else { return }
+                viewModel.selectedCellIndex = indexPath.row
+                mainView.onbCollectionView.reloadData()
+                continueButtonState()
+            })
+            .disposed(by: disposeBag)
     }
 }
 

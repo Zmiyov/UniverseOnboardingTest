@@ -75,7 +75,7 @@ final class PaywallViewController: UIViewController {
 }
 
 extension PaywallViewController {
-    private func loadProducts(){
+    private func loadProducts() {
         Task {
             do {
                 try await purchaseManager.loadProducts()
