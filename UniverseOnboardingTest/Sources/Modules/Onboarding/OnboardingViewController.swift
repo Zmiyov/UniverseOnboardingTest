@@ -16,6 +16,7 @@ final class OnboardingViewController: UIViewController {
     }
     
     private let disposeBag = DisposeBag()
+    private let viewModel = OnboardingViewModel()
     private var models: [OnboardingModel]?
     private var pageIndex: Int = 0
     private var selectedCellIndex: Int?
@@ -35,7 +36,7 @@ final class OnboardingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        fetchData()
+        loadData()
     }
     
     private func setupUI() {
@@ -62,27 +63,11 @@ final class OnboardingViewController: UIViewController {
             .disposed(by: disposeBag)
     }
     
-    private func nextButtonTapped() {
-        guard let models else { return }
-        if models.count - 1 > pageIndex {
-            pageIndex += 1
-            openNextPage()
-        } else if models.count - 1 == pageIndex {
-            //Open Paywall
-            let paywallVC = PaywallViewController()
-            paywallVC.modalPresentationStyle = .overCurrentContext
-            paywallVC.modalTransitionStyle = .coverVertical
-            present(paywallVC, animated: true)
-        } else if models.count == 0 {
-            print("No models")
-        }
-    }
-    
-    private func fetchData() {
-        NetworkService.shared.fetchData(from: Endpoints.onboarding.rawValue)
-            .subscribe(onNext: { [weak self] (onboardingModels: OnboardingModelContainer) in
+    private func loadData() {
+        viewModel.dataArraySubject
+            .subscribe(onNext: { [weak self] (onboardingModels) in
                 guard let self = self else { return }
-                models = onboardingModels.items
+                models = onboardingModels
                 updatePage()
             }, onError: { error in
                 print("Error: \(error)")
@@ -101,6 +86,22 @@ final class OnboardingViewController: UIViewController {
         selectedCellIndex = nil
         continueButtonState()
         updatePage()
+    }
+    
+    private func nextButtonTapped() {
+        guard let models else { return }
+        if models.count - 1 > pageIndex {
+            pageIndex += 1
+            openNextPage()
+        } else if models.count - 1 == pageIndex {
+            //Open Paywall
+            let paywallVC = PaywallViewController()
+            paywallVC.modalPresentationStyle = .overCurrentContext
+            paywallVC.modalTransitionStyle = .coverVertical
+            present(paywallVC, animated: true)
+        } else if models.count == 0 {
+            print("No models")
+        }
     }
 }
 
