@@ -17,11 +17,10 @@ final class PaywallViewController: UIViewController {
         return view
     }()
     
+    private let viewModel = PaywallViewModel()
+    
     private let disposeBag = DisposeBag()
     private var purchaseManager = PurchaseManager.shared
-    private var monthlyPriceLabel: String = "$6.99" {
-        didSet { setPriceInLabel(price: self.monthlyPriceLabel) }
-    }
     
     override func loadView() {
         super.loadView()
@@ -31,12 +30,11 @@ final class PaywallViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        loadProducts()
     }
     
     private func setupUI() {
         setupButton()
-        setPriceInLabel(price: self.monthlyPriceLabel)
+        setupPriceObserver()
     }
     
     private func setupButton() {
@@ -54,9 +52,14 @@ final class PaywallViewController: UIViewController {
             })
             .disposed(by: disposeBag)
     }
-
-    private func setPriceInLabel(price: String) {
-        mainView.setupAttributedLabel(price: price)
+    
+    private func setupPriceObserver() {
+        viewModel.currentPrice
+            .subscribe(onNext: { [weak self] price in
+                guard let self else { return }
+                mainView.setupAttributedLabel(price: price)
+            })
+            .disposed(by: disposeBag)
     }
     
     private func showApp() {
@@ -75,19 +78,6 @@ final class PaywallViewController: UIViewController {
 }
 
 extension PaywallViewController {
-    private func loadProducts() {
-        Task {
-            do {
-                try await purchaseManager.loadProducts()
-                if let mainSubProduct = purchaseManager.products.first(where: { $0.id == PurchaseProductID.main.rawValue }) {
-                    self.monthlyPriceLabel = mainSubProduct.displayPrice
-                }
-            } catch {
-                print(error)
-            }
-        }
-    }
-    
     private func puchaseIAP() {
         guard let mainSubProduct = purchaseManager.products.first(where: { $0.id == PurchaseProductID.main.rawValue }) else { return }
         Task {

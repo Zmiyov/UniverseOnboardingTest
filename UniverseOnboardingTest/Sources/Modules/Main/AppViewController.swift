@@ -14,9 +14,7 @@ final class AppViewController: UIViewController {
         return view
     }()
     
-    var isSubscribed: Bool {
-        PurchaseManager.shared.hasUnlockedPro
-    }
+    private let viewModel = AppMainViewModel()
     
     override func loadView() {
         super.loadView()
@@ -32,7 +30,7 @@ final class AppViewController: UIViewController {
         let unsubscribedImage = UIImage(systemName: "multiply.square")?.withTintColor(.red, renderingMode: .alwaysOriginal)
         let subscribedImage = UIImage(systemName: "checkmark.square")?.withTintColor(.systemGreen, renderingMode: .alwaysOriginal)
         
-        if isSubscribed {
+        if viewModel.isSubscribed {
             mainView.imageView.image = subscribedImage
             mainView.label.text = MainAppScreenTxt.subscribed
         } else {
