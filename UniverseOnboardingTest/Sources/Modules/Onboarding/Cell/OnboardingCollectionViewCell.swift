@@ -13,14 +13,14 @@ final class OnboardingCollectionViewCell: UICollectionViewCell {
     private enum Constants {
         static let inset: CGFloat = 16
         static let cornerRadius: CGFloat = 16
-        static let titleFontSize: CGFloat = 17
+        static let titleFontSize: CGFloat = 16
     }
     
     lazy var titleLabel: UILabel = {
         var label = UILabel()
         label.textAlignment = .left
         label.textColor = .blackFont
-        label.font = Fonts.onbTitleSemiBold(Constants.titleFontSize)
+        label.font = Fonts.onbTitleMedium(Constants.titleFontSize)
         return label
     }()
     

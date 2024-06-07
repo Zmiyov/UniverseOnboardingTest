@@ -18,6 +18,7 @@ final class PaywallView: BaseOnboardingView {
     lazy var topImage: UIImageView = {
         var imageView = UIImageView()
         imageView.image = UIImage(named: "paywallImage")
+        imageView.contentMode = .scaleAspectFill
         return imageView
     }()
     
@@ -100,13 +101,14 @@ final class PaywallView: BaseOnboardingView {
         super.setupConstrains()
         
         enum Constants {
-            static let bottomInset: CGFloat = 82
+            static let closeButtonSize: CGFloat = 24
+            static let closeButtonTrailing: CGFloat = 16
+            static let titleLabelTopInset: CGFloat = 40
+            static let trialTermsLabelTopInset: CGFloat = 16
+            static let privacyTermsTextViewTopInset: CGFloat = 10
             static let horizontalInset: CGFloat = 24
-            static let collectionVerticalInset: CGFloat = 20
-            static let titleLabelHeight: CGFloat = 30
-            static let pageNameLabelTopInset: CGFloat = 30
-            static let pageNameLabelHeight: CGFloat = 24
-            static let continueButtonHeight: CGFloat = 56
+            static let startButtonHeight: CGFloat = 56
+            static let startButtonBottomInset: CGFloat = 82
         }
         
         addSubview(topImage)
@@ -118,36 +120,35 @@ final class PaywallView: BaseOnboardingView {
         
         addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(topImage.snp.bottom).offset(40)
+            make.top.equalTo(topImage.snp.bottom).offset(Constants.titleLabelTopInset)
             make.horizontalEdges.equalToSuperview().inset(Constants.horizontalInset)
         }
         
         addSubview(trialTermsLabel)
         trialTermsLabel.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(40)
+            make.top.equalTo(titleLabel.snp.bottom).offset(Constants.trialTermsLabelTopInset)
             make.horizontalEdges.equalToSuperview().inset(Constants.horizontalInset)
         }
         
         addSubview(startButton)
         startButton.snp.makeConstraints { make in
             make.horizontalEdges.equalToSuperview().inset(Constants.horizontalInset)
-            make.bottom.equalToSuperview().inset(Constants.bottomInset)
-            make.height.equalTo(Constants.continueButtonHeight)
+            make.bottom.equalToSuperview().inset(Constants.startButtonBottomInset)
+            make.height.equalTo(Constants.startButtonHeight)
         }
         
         addSubview(privacyTermsTextView)
         privacyTermsTextView.snp.makeConstraints { make in
             make.horizontalEdges.equalToSuperview().inset(Constants.horizontalInset)
-            make.top.equalTo(startButton.snp.bottom).offset(10)
+            make.top.equalTo(startButton.snp.bottom).offset(Constants.privacyTermsTextViewTopInset)
             make.bottom.equalToSuperview()
         }
         
         addSubview(closeButton)
         closeButton.snp.makeConstraints { make in
-            make.trailing.equalToSuperview().inset(16)
+            make.trailing.equalToSuperview().inset(Constants.closeButtonTrailing)
             make.top.equalTo(safeAreaLayoutGuide.snp.top)
-            make.size.equalTo(24)
+            make.size.equalTo(Constants.closeButtonSize)
         }
-        
     }
 }

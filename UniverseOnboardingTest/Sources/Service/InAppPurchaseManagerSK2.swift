@@ -15,7 +15,7 @@ enum PurchaseDisplayName: String, CaseIterable {
     case mainSub = "mainSub"
 }
 
-class PurchaseManager {
+final class PurchaseManager {
     
     static let shared = PurchaseManager()
     
