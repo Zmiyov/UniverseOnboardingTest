@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 
 final class OnboardingViewController: UIViewController {
-        
+    
     private enum Constants {
         static let cellHeight: CGFloat = 52
     }
@@ -27,31 +27,38 @@ final class OnboardingViewController: UIViewController {
         super.loadView()
         self.view = mainView
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loadData()
         setupUI()
+        setupButtonAction()
         configureCollectionView()
     }
     
     private func setupUI() {
-        continueButtonState()
-        setupButtonAction()
+        updateButtonState()
+        setupInitialButtonState()
     }
     
-    private func continueButtonState() {
-        if viewModel.selectedCellIndex != nil  {
-            mainView.continueButton.backgroundColor = .buttonBlack
-            mainView.continueButton.setTitleColor(.white, for: .normal)
-        } else {
-            mainView.continueButton.backgroundColor = .white
-            mainView.continueButton.setTitleColor(.inactiveGray, for: .normal)
-        }
+    private func setupInitialButtonState() {
+        viewModel.selectedCellIndex.onNext(nil)
+    }
+    
+    private func updateButtonState() {
+        viewModel.selectedCellIndex
+            .subscribe (onNext: { [weak self] index in
+                guard let self else { return }
+                mainView.continueButton.backgroundColor = index != nil ? .buttonBlack : .white
+                mainView.continueButton.setTitleColor(index != nil ? .white : .inactiveGray, for: .normal)
+                mainView.continueButton.isEnabled = index != nil
+            })
+            .disposed(by: disposeBag)
     }
     
     private func setupButtonAction() {
         mainView.continueButton.rx.tap
+            .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] in
                 guard let self else { return }
                 nextButtonTapped()
@@ -70,16 +77,14 @@ final class OnboardingViewController: UIViewController {
             .disposed(by: disposeBag)
     }
     
-    private func openNextPage() {
-        viewModel.selectedCellIndex = nil
-        continueButtonState()
-    }
-    
     private func nextButtonTapped() {
-        if viewModel.dataArray.count - 1 > viewModel.pageIndex {
-            viewModel.pageIndex += 1
-            openNextPage()
-        } else if viewModel.dataArray.count - 1 == viewModel.pageIndex {
+        guard let currentPageIndex = viewModel.pageIndex.value else { return }
+        let maxNumberOfPages = viewModel.dataArray.count - 1
+        
+        if maxNumberOfPages > currentPageIndex {
+            viewModel.pageIndex.accept(currentPageIndex + 1)
+            viewModel.selectedCellIndex.onNext(nil)
+        } else if maxNumberOfPages == currentPageIndex {
             let paywallVC = PaywallViewController()
             paywallVC.modalPresentationStyle = .overCurrentContext
             paywallVC.modalTransitionStyle = .coverVertical
@@ -98,21 +103,16 @@ extension OnboardingViewController {
             .disposed(by: disposeBag)
         
         viewModel.currentAnswers
-            .bind(to: mainView.onbCollectionView.rx.items(cellIdentifier: "OnboardingCollectionViewCell", cellType: OnboardingCollectionViewCell.self)) { [weak self] index, element, cell in
-                guard let self else { return }
-                cell.titleLabel.text = element
-                cell.backgroundColor = index == viewModel.selectedCellIndex ? .cellGreen : .white
-                cell.titleLabel.textColor = index == viewModel.selectedCellIndex ? .white : .blackFont
+            .bind(to: mainView.onbCollectionView.rx.items(cellIdentifier: "OnboardingCollectionViewCell", cellType: OnboardingCollectionViewCell.self)) { index, element, cell in
+                cell.titleLabel.text = element.text
+                cell.backgroundColor = element.isSelected ? .cellGreen : .white
+                cell.titleLabel.textColor = element.isSelected ? .white : .blackFont
             }
             .disposed(by: disposeBag)
         
         mainView.onbCollectionView.rx.itemSelected
-            .subscribe(onNext: { [weak self] indexPath in
-                guard let self else { return }
-                viewModel.selectedCellIndex = indexPath.row
-                mainView.onbCollectionView.reloadData()
-                continueButtonState()
-            })
+            .map { $0.row }
+            .bind(to: viewModel.selectedCellIndex)
             .disposed(by: disposeBag)
     }
 }
@@ -121,7 +121,7 @@ extension OnboardingViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-
+        
         let height: CGFloat = Constants.cellHeight
         let width: CGFloat = (collectionView.bounds.width)
         return CGSize(width: width, height: height)

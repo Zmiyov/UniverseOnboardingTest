@@ -16,3 +16,8 @@ struct OnboardingModel: Codable {
     let question: String
     let answers: [String]
 }
+
+struct Answer {
+    let text: String
+    var isSelected: Bool = false
+}
