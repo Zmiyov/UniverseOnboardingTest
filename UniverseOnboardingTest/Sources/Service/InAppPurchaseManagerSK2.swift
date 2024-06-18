@@ -90,5 +90,17 @@ final class PurchaseManager {
             }
         }
     }
+    
+    func puchaseMainIAP(completion: @escaping (Bool) -> Void ) {
+        guard let mainSubProduct = products.first(where: { $0.id == PurchaseProductID.main.rawValue }) else { return }
+        Task {
+            do {
+                let result = try await self.purchase(mainSubProduct)
+                completion(result)
+            } catch {
+                print(error)
+            }
+        }
+    }
 }
 

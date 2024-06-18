@@ -48,7 +48,14 @@ final class PaywallViewController: UIViewController {
         mainView.startButton.rx.tap
             .subscribe(onNext: { [weak self] in
                 guard let self else { return }
-                puchaseIAP()
+                purchaseManager.puchaseMainIAP { [weak self] result in
+                    guard let self else { return }
+                    if result {
+                        DispatchQueue.main.async {
+                            self.showApp()
+                        }
+                    }
+                }
             })
             .disposed(by: disposeBag)
     }
@@ -58,6 +65,7 @@ final class PaywallViewController: UIViewController {
             .subscribe(onNext: { [weak self] price in
                 guard let self else { return }
                 mainView.setupAttributedLabel(price: price)
+                print("🔥", Thread.current)
             })
             .disposed(by: disposeBag)
     }
@@ -74,21 +82,5 @@ final class PaywallViewController: UIViewController {
         let options: UIView.AnimationOptions = .transitionCrossDissolve
         let duration: TimeInterval = 0.3
         UIView.transition(with: window, duration: duration, options: options, animations: {})
-    }
-}
-
-extension PaywallViewController {
-    private func puchaseIAP() {
-        guard let mainSubProduct = purchaseManager.products.first(where: { $0.id == PurchaseProductID.main.rawValue }) else { return }
-        Task {
-            do {
-                let result = try await self.purchaseManager.purchase(mainSubProduct)
-                if result {
-                    self.showApp()
-                }
-            } catch {
-                print(error)
-            }
-        }
     }
 }
